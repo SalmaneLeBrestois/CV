@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Mohamed Salah</title>
+    <link rel="stylesheet" href="css/resume.css">
+    <!-- Font Awesome CDN (v4.4.0) -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <!-- Adobe Edge Web Fonts: Raleway -->
+    <script src="https://use.edgefonts.net/raleway.js"></script>
+    <!-- Responsive styles -->
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <div id="wrapper" itemscope itemtype="http://schema.org/Person" itemid="#mohamed-salah" itemref="contact-info">
+        <header>
+            <img src="image.png" alt="Photo de Mohamed Salah" width="120" height="120" itemprop="image">
+            <h1 itemprop="name">mohamed salah</h1>
+            <h2 itemprop="jobTitle">Développeur Web Full Stack</h2>
+            <div id="contact-info">
+                <p>Email : <a href="mailto:mohamed.salah@email.com" itemprop="email">mohamed.salah@email.com</a></p>
+                <p>Téléphone : <span itemprop="telephone">06 12 34 56 78</span></p>
+                <p itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">Adresse : <span itemprop="streetAddress">123 rue de l'Université</span>, <span itemprop="addressLocality">liverpool</span></p>
+                <p>Date de naissance : <time datetime="2022-10-10" itemprop="birthDate">10/10/2022</time></p>
+            </div>
+        </header>
+        <section>
+            <h3>Présentation</h3>
+            <p itemprop="description">Passionné par le développement web, je conçois des applications performantes et intuitives. Curieux et rigoureux, j'aime relever les défis techniques et collaborer en équipe pour mener à bien des projets innovants.</p>
+        </section>
+        <section>
+            <h3>Expérience professionnelle</h3>
+            <article>
+                <div itemprop="hasOccupation" itemscope itemtype="http://schema.org/Role" itemid="#role-ubo">
+                    <h4 itemprop="roleName">Développeur Web - UBO (2023-2025)</h4>
+                    <meta itemprop="startDate" content="2023">
+                    <meta itemprop="endDate" content="2025">
+                    <p itemprop="description">Développement d'applications web pour la gestion universitaire, optimisation des performances et formation des utilisateurs.</p>
+                    <div itemprop="memberOf" itemscope itemtype="http://schema.org/Organization" itemid="#ubo"><meta itemprop="name" content="UBO"></div>
+                </div>
+            </article>
+            <article>
+                <div itemprop="hasOccupation" itemscope itemtype="http://schema.org/Role" itemid="#role-startuptech">
+                    <h4 itemprop="roleName">Stagiaire Développeur - StartUpTech (2022)</h4>
+                    <meta itemprop="startDate" content="2022">
+                    <p itemprop="description">Participation à la création d'une plateforme e-commerce, intégration d'API et amélioration de l'UX.</p>
+                    <div itemprop="memberOf" itemscope itemtype="http://schema.org/Organization" itemid="#startuptech"><meta itemprop="name" content="StartUpTech"></div>
+                </div>
+            </article>
+        </section>
+        <section>
+            <h3>Compétences</h3>
+            <dl>
+                <dt>HTML/CSS</dt><dd itemprop="knowsAbout">Maîtrise avancée pour des interfaces modernes</dd>
+                <dt>JavaScript</dt><dd itemprop="knowsAbout">Développement front-end et back-end (Node.js)</dd>
+                <dt>Python</dt><dd itemprop="knowsAbout">Scripts, automatisation et data science</dd>
+                <dt>SQL</dt><dd itemprop="knowsAbout">Gestion de bases de données relationnelles</dd>
+                <dt>Git</dt><dd itemprop="knowsAbout">Gestion de versions et collaboration</dd>
+            </dl>
+        </section>
+        <section>
+            <h3>Formation, Langues & Hobbies</h3>
+            <ul>
+                <li><strong>Formation :</strong> <span itemprop="alumniOf" itemscope itemtype="http://schema.org/EducationalOrganization"><span itemprop="name">Master Informatique, UBO Brest (2021-2023)</span></span></li>
+                <li><strong>Langues :</strong> <span itemprop="knowsLanguage">Français (natif)</span>, <span itemprop="knowsLanguage">Anglais (courant)</span>, <span itemprop="knowsLanguage">Espagnol (intermédiaire)</span></li>
+                <li><strong>Hobbies :</strong> <span itemprop="hobby">Photographie</span> <i class="fa fa-camera-retro" aria-hidden="true"></i> <i class="icon-camera-retro"></i> <i class="icon-camera-restro"></i>, randonnée, jeux vidéo, veille technologique</li>
+            </ul>
+        </section>
+        <footer>
+            <p>
+                <a href="https://www.linkedin.com/in/mohamed-salah" target="_blank" itemprop="sameAs">LinkedIn</a> |
+                <a href="https://github.com/mohamed-salah" target="_blank" itemprop="sameAs">GitHub</a> |
+                <a href="mailto:mohamed.salah@email.com" itemprop="email">Email</a>
+            </p>
+            <p>&copy; 2025 Mohamed Salah</p>
+        </footer>
+    </div>
+</body>
+</html>

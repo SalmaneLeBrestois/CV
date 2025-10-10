@@ -1,0 +1,51 @@
+html, button, input, select, textarea {
+    color: #444;
+}
+html {
+    font-size: 1em;
+    line-height: 1.4;
+    background: #777;
+}
+/* Apply Adobe Edge Raleway to the main heading */
+h1 {
+    font-family: 'Raleway', Arial, sans-serif;
+}
+#wrapper {
+    max-width: 900px;
+    min-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+    background: #fff;
+    box-shadow: 2px 4px 12px rgba(0,0,0,0.2);
+    padding: 30px;
+}
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+header img {
+    order: 2;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    background: #fff;
+    box-shadow: 2px 4px 8px rgba(0,0,0,0.2);
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+}
+
+/* Compatibility for legacy .icon- classes mapping to Font Awesome 4 */
+.icon-camera-retro:before {
+    /* Font Awesome 4 uses the FontAwesome font; ensure we use it for pseudo-element */
+    font-family: FontAwesome;
+    content: "\f083"; /* camera-retro unicode in Font Awesome 4 */
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    display: inline-block;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin-left: 0.25rem;
+}

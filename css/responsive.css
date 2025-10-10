@@ -1,0 +1,97 @@
+/* Responsive media queries for ubo-resume.html
+   - max-width: 740px : reduce wrapper padding, stack header columns
+   - max-width: 570px : further reduce font sizes
+   - max-width: 480px : single column layout, center content
+*/
+
+@media only screen and (max-width: 740px) {
+  /* make the header stack vertically */
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  header img {
+    order: 0;
+    margin-bottom: 10px;
+    width: 100px;
+    height: 100px;
+  }
+
+  /* allow the wrapper to shrink and use full available width on smaller screens */
+  #wrapper {
+    padding: 20px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  /* Center main headings when stacked */
+  h1, h2 {
+    text-align: center;
+    width: 100%;
+    margin: 0.2em 0 0.6em 0;
+  }
+}
+
+@media only screen and (max-width: 570px) {
+  /* reduce some font sizes and spacing */
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  h2 {
+    font-size: 1.1rem;
+  }
+
+  section p, section li, section dd {
+    font-size: 0.95rem;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  /* single column, center headings */
+  header {
+    align-items: center;
+    text-align: center;
+  }
+
+  header img {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  /* ensure full-width single-column layout and cancel any float-based layout */
+  html, body {
+    /* restore/keep the original background color (no color-change on small screens) */
+    background: #777;
+  }
+
+  #wrapper {
+    padding: 15px;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  /* Force block layout: cancel floats and make children full width */
+  header, header > *, section, article, footer, dl, ul, li {
+    float: none !important;
+    display: block;
+    width: 100% !important;
+  }
+
+  h1 {
+    font-size: 1.4rem;
+  }
+  /* center headings on the smallest screens */
+  h1, h2, h3 {
+    text-align: center;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  h2 {
+    font-size: 1rem;
+  }
+}
