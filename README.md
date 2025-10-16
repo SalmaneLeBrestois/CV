@@ -45,4 +45,4 @@ Contact
 -------
 Salmane Koraichi — salmane.koraichi@gmail.com
 
-Lien du TP déployé : https://salmanelebrestois.github.io/CV/ubo-resume.html
+Lien du TP déployé : (https://salmanelebrestois.github.io/CV/index.html)
