@@ -3,6 +3,11 @@
    - max-width: 570px : further reduce font sizes
    - max-width: 480px : single column layout, center content
 */
+/*
+  responsive.css
+  Auteur: Salmane Koraichi
+  Media queries pour adapter le CV aux différentes tailles d'écran.
+*/
 
 @media only screen and (max-width: 740px) {
   /* make the header stack vertically */

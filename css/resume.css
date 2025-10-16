@@ -1,6 +1,11 @@
 html, button, input, select, textarea {
     color: #444;
 }
+/*
+    resume.css
+    Auteur: Salmane Koraichi
+    Styles principaux pour le CV, inclut les règles pour les panels de détails, tooltips et auto-évaluation.
+*/
 html {
     font-size: 1em;
     line-height: 1.4;
@@ -48,4 +53,92 @@ header img {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     margin-left: 0.25rem;
+}
+
+/* Details panel for experiences: hidden by default and animatable */
+.detail {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.45s ease;
+    opacity: 0;
+    transform-origin: top;
+}
+.detail.open {
+    opacity: 1;
+    /* max-height will be set inline via JS to allow smooth animation to content height */
+}
+.detail p {
+    margin: 0.5em 0 0 0;
+}
+.detail-toggle {
+    margin-left: 0.5em;
+    font-size: 0.8em;
+    padding: 0.15em 0.4em;
+}
+
+/* Tooltip for skills */
+.skill {
+    cursor: help;
+    text-decoration: underline dotted;
+}
+.tooltip {
+    position: fixed;
+    background: #222;
+    color: #fff;
+    padding: 8px 10px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    pointer-events: none;
+    z-index: 9999;
+    max-width: 280px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    transform: translate(-50%, 12px);
+    opacity: 0;
+    transition: opacity 0.12s ease, transform 0.12s ease;
+}
+.tooltip.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Auto-evaluation styles */
+#autoevaluation {
+    margin-top: 1.25em;
+}
+.stars {
+    display: inline-block;
+    color: #f2b01e;
+    font-size: 1.1rem;
+}
+.star {
+    margin-right: 0.15rem;
+}
+.chart {
+    margin-top: 0.8em;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+.bar-row {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+.bar-label {
+    width: 140px;
+    flex-shrink: 0;
+    font-weight: 600;
+}
+.bar {
+    height: 16px;
+    background: #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+    flex-grow: 1;
+}
+.bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg,#4caf50,#8bc34a);
+    width: 0%;
+    transition: width 600ms ease;
 }

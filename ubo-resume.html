@@ -1,4 +1,10 @@
 <!DOCTYPE html>
+<!--
+    UFR Sciences et Techniques - TP JavaScript
+    Auteur: Salmane Koraichi
+    Fichier: ubo-resume.html
+    But: CV enrichi avec microdonnées, responsive, tooltips, détails animés et auto-évaluation (JS)
+-->
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -33,18 +39,28 @@
             <h3>Expérience professionnelle</h3>
             <article>
                 <div itemprop="hasOccupation" itemscope itemtype="http://schema.org/Role" itemid="#role-ubo">
-                    <h4 itemprop="roleName">Développeur Web - UBO (2023-2025)</h4>
+                    <h4 itemprop="roleName">Développeur Web - UBO (2023-2025)
+                        <button type="button" class="detail-toggle" data-target="detail-ubo" aria-expanded="false" aria-controls="detail-ubo">Détails</button>
+                    </h4>
                     <meta itemprop="startDate" content="2023">
                     <meta itemprop="endDate" content="2025">
-                    <p itemprop="description">Développement d'applications web pour la gestion universitaire, optimisation des performances et formation des utilisateurs.</p>
+                    <p class="summary">Développement d'applications web pour la gestion universitaire, optimisation des performances et formation des utilisateurs.</p>
+                    <div id="detail-ubo" class="detail" role="region" aria-hidden="true">
+                        <p>Travail réalisé : refonte d'une application interne pour la gestion pédagogique, optimisation des requêtes SQL, mise en place de tests automatisés et formation des utilisateurs finaux. Participation à l'architecture backend (APIs REST), mise en place d'un système de cache et suivi des performances.</p>
+                    </div>
                     <div itemprop="memberOf" itemscope itemtype="http://schema.org/Organization" itemid="#ubo"><meta itemprop="name" content="UBO"></div>
                 </div>
             </article>
             <article>
                 <div itemprop="hasOccupation" itemscope itemtype="http://schema.org/Role" itemid="#role-startuptech">
-                    <h4 itemprop="roleName">Stagiaire Développeur - StartUpTech (2022)</h4>
+                    <h4 itemprop="roleName">Stagiaire Développeur - StartUpTech (2022)
+                        <button type="button" class="detail-toggle" data-target="detail-startuptech" aria-expanded="false" aria-controls="detail-startuptech">Détails</button>
+                    </h4>
                     <meta itemprop="startDate" content="2022">
-                    <p itemprop="description">Participation à la création d'une plateforme e-commerce, intégration d'API et amélioration de l'UX.</p>
+                    <p class="summary">Participation à la création d'une plateforme e-commerce, intégration d'API et amélioration de l'UX.</p>
+                    <div id="detail-startuptech" class="detail" role="region" aria-hidden="true">
+                        <p>Travail réalisé : intégration de services de paiement, création d'interfaces responsables pour mobiles, mise en place d'un pipeline de déploiement, et rédaction de la documentation technique. Collaboration étroite avec l'équipe produit pour améliorer le parcours client.</p>
+                    </div>
                     <div itemprop="memberOf" itemscope itemtype="http://schema.org/Organization" itemid="#startuptech"><meta itemprop="name" content="StartUpTech"></div>
                 </div>
             </article>
@@ -52,12 +68,18 @@
         <section>
             <h3>Compétences</h3>
             <dl>
-                <dt>HTML/CSS</dt><dd itemprop="knowsAbout">Maîtrise avancée pour des interfaces modernes</dd>
-                <dt>JavaScript</dt><dd itemprop="knowsAbout">Développement front-end et back-end (Node.js)</dd>
-                <dt>Python</dt><dd itemprop="knowsAbout">Scripts, automatisation et data science</dd>
-                <dt>SQL</dt><dd itemprop="knowsAbout">Gestion de bases de données relationnelles</dd>
-                <dt>Git</dt><dd itemprop="knowsAbout">Gestion de versions et collaboration</dd>
+                <dt><span class="skill" data-description="HTML & CSS : structuration et mise en forme responsive">HTML/CSS</span></dt><dd itemprop="knowsAbout">Maîtrise avancée pour des interfaces modernes</dd>
+                <dt><span class="skill" data-description="JavaScript : DOM, events, Node.js, frameworks">JavaScript</span></dt><dd itemprop="knowsAbout">Développement front-end et back-end (Node.js)</dd>
+                <dt><span class="skill" data-description="Python : scripting, automatisation, data science">Python</span></dt><dd itemprop="knowsAbout">Scripts, automatisation et data science</dd>
+                <dt><span class="skill" data-description="SQL : requêtes, optimisation, conception de schémas">SQL</span></dt><dd itemprop="knowsAbout">Gestion de bases de données relationnelles</dd>
+                <dt><span class="skill" data-description="Git : gestion de versions, branches, fusion">Git</span></dt><dd itemprop="knowsAbout">Gestion de versions et collaboration</dd>
             </dl>
+        </section>
+        <section id="autoevaluation">
+            <h3>Auto-évaluation des connaissances</h3>
+            <p>Indiquez votre niveau technique pour chaque compétence (1 à 5 étoiles).</p>
+            <div id="self-eval-list" aria-live="polite"></div>
+            <div id="self-eval-chart" class="chart" aria-hidden="false"></div>
         </section>
         <section>
             <h3>Formation, Langues & Hobbies</h3>
@@ -76,5 +98,187 @@
             <p>&copy; 2025 Mohamed Salah</p>
         </footer>
     </div>
+        <script>
+        // Toggle one detail panel at a time with smooth height animation
+        (function(){
+            function closePanel(panel){
+                panel.style.maxHeight = null;
+                panel.classList.remove('open');
+                panel.setAttribute('aria-hidden', 'true');
+            }
+
+            function openPanel(panel){
+                // set to scrollHeight to animate
+                panel.classList.add('open');
+                panel.setAttribute('aria-hidden', 'false');
+                // allow the browser to compute styles before setting height
+                var height = panel.scrollHeight + 'px';
+                panel.style.maxHeight = height;
+            }
+
+            var toggles = document.getElementsByClassName('detail-toggle');
+            var openPanelRef = null;
+            for(var i=0;i<toggles.length;i++){
+                toggles[i].addEventListener('click', function(e){
+                    var targetId = this.getAttribute('data-target');
+                    var panel = document.getElementById(targetId);
+                    if(!panel) return;
+
+                    // if another panel is open, close it
+                    if(openPanelRef && openPanelRef !== panel){
+                        closePanel(openPanelRef);
+                        // update corresponding toggle aria-expanded
+                        var prevToggle = document.querySelector('[data-target="'+openPanelRef.id+'"]');
+                        if(prevToggle) prevToggle.setAttribute('aria-expanded','false');
+                        openPanelRef = null;
+                    }
+
+                    if(panel.classList.contains('open')){
+                        closePanel(panel);
+                        this.setAttribute('aria-expanded','false');
+                        openPanelRef = null;
+                    } else {
+                        openPanel(panel);
+                        this.setAttribute('aria-expanded','true');
+                        openPanelRef = panel;
+                    }
+                });
+            }
+
+            // Close panels on transition end if collapsed to remove inline height
+            document.addEventListener('transitionend', function(e){
+                if(e.propertyName === 'max-height'){
+                    var panel = e.target;
+                    if(panel && !panel.classList.contains('open')){
+                        panel.style.maxHeight = null;
+                    }
+                }
+            });
+        })();
+        </script>
+            <script>
+            // Tooltip for skills: follows mouse, appears below the skill, supports touch
+            (function(){
+                var skills = document.getElementsByClassName('skill');
+                if(!skills || skills.length===0) return;
+
+                // create tooltip element
+                var tooltip = document.createElement('div');
+                tooltip.className = 'tooltip';
+                tooltip.setAttribute('role','tooltip');
+                document.body.appendChild(tooltip);
+
+                function showTooltip(text, x, y){
+                    tooltip.textContent = text;
+                    tooltip.classList.add('visible');
+                    positionTooltip(x, y);
+                }
+
+                function hideTooltip(){
+                    tooltip.classList.remove('visible');
+                }
+
+                function positionTooltip(x, y){
+                    // keep tooltip within viewport
+                    var rect = tooltip.getBoundingClientRect();
+                    var left = x;
+                    var top = y + 18; // offset below cursor
+                    // prevent overflow right
+                    if(left + rect.width/2 > window.innerWidth) left = window.innerWidth - rect.width/2 - 8;
+                    if(left - rect.width/2 < 0) left = rect.width/2 + 8;
+                    tooltip.style.left = left + 'px';
+                    tooltip.style.top = top + 'px';
+                    tooltip.style.transform = 'translate(-50%, 0)';
+                }
+
+                // mouse events
+                Array.prototype.forEach.call(skills, function(el){
+                    var desc = el.getAttribute('data-description') || '';
+                    el.addEventListener('mousemove', function(e){
+                        showTooltip(desc, e.clientX, e.clientY);
+                    });
+                    el.addEventListener('mouseenter', function(e){
+                        showTooltip(desc, e.clientX, e.clientY);
+                    });
+                    el.addEventListener('mouseleave', function(e){
+                        hideTooltip();
+                    });
+
+                    // touch support: show tooltip on tap, hide on second tap or after timeout
+                    var touchTimer = null;
+                    el.addEventListener('touchstart', function(e){
+                        var touch = e.touches[0];
+                        showTooltip(desc, touch.clientX, touch.clientY);
+                        // prevent immediate hide
+                        if(touchTimer) clearTimeout(touchTimer);
+                        touchTimer = setTimeout(hideTooltip, 4000);
+                    });
+                });
+
+                // hide on scroll or resize
+                window.addEventListener('scroll', hideTooltip);
+                window.addEventListener('resize', hideTooltip);
+            })();
+            </script>
+                <script>
+                // Auto-evaluation: generate stars and histogram from data
+                (function(){
+                    var evaluations = [
+                        {name: 'HTML/CSS', score: 5},
+                        {name: 'JavaScript', score: 4},
+                        {name: 'Python', score: 3},
+                        {name: 'SQL', score: 3},
+                        {name: 'Git', score: 4}
+                    ];
+
+                    var list = document.getElementById('self-eval-list');
+                    var chart = document.getElementById('self-eval-chart');
+                    if(!list || !chart) return;
+
+                    evaluations.forEach(function(ev){
+                        // create star display
+                        var row = document.createElement('div');
+                        row.className = 'bar-row';
+                        var label = document.createElement('div');
+                        label.className = 'bar-label';
+                        label.textContent = ev.name;
+                        row.appendChild(label);
+
+                        var stars = document.createElement('div');
+                        stars.className = 'stars';
+                        for(var i=0;i<5;i++){
+                            var s = document.createElement('span');
+                            s.className = 'star';
+                            s.textContent = (i<ev.score)? '★' : '☆';
+                            stars.appendChild(s);
+                        }
+                        row.appendChild(stars);
+                        list.appendChild(row.cloneNode(true));
+
+                        // create bar for chart
+                        var chartRow = document.createElement('div');
+                        chartRow.className = 'bar-row';
+                        var chartLabel = document.createElement('div');
+                        chartLabel.className = 'bar-label';
+                        chartLabel.textContent = ev.name;
+                        chartRow.appendChild(chartLabel);
+                        var bar = document.createElement('div');
+                        bar.className = 'bar';
+                        var fill = document.createElement('div');
+                        fill.className = 'bar-fill';
+                        // target width in percent (score from 1..5)
+                        var pct = Math.round((ev.score/5)*100);
+                        fill.style.width = '0%';
+                        bar.appendChild(fill);
+                        chartRow.appendChild(bar);
+                        chart.appendChild(chartRow);
+
+                        // animate fill slightly delayed
+                        (function(f, p){
+                            setTimeout(function(){ f.style.width = p + '%'; }, 150);
+                        })(fill, pct);
+                    });
+                })();
+                </script>
 </body>
 </html>
