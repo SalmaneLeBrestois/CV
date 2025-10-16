@@ -43,6 +43,6 @@ Remarques et améliorations possibles
 
 Contact
 -------
-Salmane Koraichi — salmane.koraichi@example.com
+Salmane Koraichi — salmane.koraichi@gmail.com
 
 Lien du TP déployé : https://salmanelebrestois.github.io/CV/ubo-resume.html
