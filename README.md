@@ -17,7 +17,7 @@ Contenu ajouté / fonctionnalités réalisées
 - Auto-évaluation : étoiles (★/☆) et histogramme pour évaluer vos compétences techniques (données dans le script JS).
 
 Fichiers importants
-- `ubo-resume.html` — page principale du CV (HTML, microdonnées, script JS embarqué).
+- `index.html` — page principale du CV (HTML, microdonnées, script JS embarqué).
 - `css/resume.css` — styles principaux, styles pour détails, tooltips et autoévaluation.
 - `css/responsive.css` — media queries pour rendre le CV responsive.
 
